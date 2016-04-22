@@ -13,4 +13,11 @@
 class Bench < ActiveRecord::Base
   validates :description, :lat, :lng, presence: true
   validates :lat, :lng, numericality: true
+
+  def self.in_bounds(bounds)
+    lng_range = (bounds["southWest"]["lng"]..bounds["northEast"]["lng"])
+    lat_range = (bounds["southWest"]["lat"]..bounds["northEast"]["lat"])
+
+    Bench.where(lng: lng_range, lat: lat_range)
+  end
 end

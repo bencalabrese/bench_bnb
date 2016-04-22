@@ -1,8 +1,8 @@
 var ApiUtil = require('../util/api_util');
 
 var ClientActions = {
-  fetchBenches: function() {
-    ApiUtil.fetchBenches();
+  fetchBenches: function(apiReadyBounds) {
+    ApiUtil.fetchBenches(apiReadyBounds);
   }
 };
 

@@ -13,9 +13,26 @@ var Map = React.createClass({
     };
 
     this.map = new window.google.maps.Map(mapDOMNode, mapOptions);
-    this.map.addListener('idle', function() {
-      ClientActions.fetchBenches();
-    });
+    this.map.addListener('idle', this.fetchBoundedBenches);
+  },
+
+  fetchBoundedBenches: function(event) {
+    var apiReadyBounds = { bounds: {} },
+        bounds = this.map.getBounds(),
+        northEast = bounds.getNorthEast(),
+        southWest = bounds.getSouthWest();
+
+    apiReadyBounds.bounds.northEast = {
+      lat: northEast.lat(),
+      lng: northEast.lng()
+    };
+
+    apiReadyBounds.bounds.southWest = {
+      lat: southWest.lat(),
+      lng: southWest.lng()
+    };
+
+    ClientActions.fetchBenches(apiReadyBounds);
   },
 
   componentWillUnmount: function() {
