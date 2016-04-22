@@ -10,7 +10,7 @@ var Map = React.createClass({
       zoom: 13
     };
 
-    this.map = new google.maps.Map(mapDOMNode, mapOptions);
+    this.map = new window.google.maps.Map(mapDOMNode, mapOptions);
   },
 
   render: function() {
