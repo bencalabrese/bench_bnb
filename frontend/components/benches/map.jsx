@@ -1,5 +1,6 @@
 var React = require('react'),
-    BenchStore = require('../../stores/bench');
+    BenchStore = require('../../stores/bench'),
+    ClientActions = require('../../actions/client_actions');
 
 var Map = React.createClass({
   componentDidMount: function() {
@@ -12,6 +13,9 @@ var Map = React.createClass({
     };
 
     this.map = new window.google.maps.Map(mapDOMNode, mapOptions);
+    this.map.addListener('idle', function() {
+      ClientActions.fetchBenches();
+    });
   },
 
   componentWillUnmount: function() {

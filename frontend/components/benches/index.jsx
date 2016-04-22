@@ -1,6 +1,5 @@
 var React = require('react'),
-    BenchStore = require('../../stores/bench'),
-    ClientActions = require('../../actions/client_actions');
+    BenchStore = require('../../stores/bench');
 
 var Index = React.createClass({
   getInitialState: function() {
@@ -8,7 +7,6 @@ var Index = React.createClass({
   },
 
   componentDidMount: function() {
-    ClientActions.fetchBenches();
     this.listener = BenchStore.addListener(this._onChange);
   },
 
