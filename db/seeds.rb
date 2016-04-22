@@ -5,3 +5,11 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+
+50.times do
+  lat = Random.new().rand(37.7..37.8)
+  lng = Random.new().rand(122.3..122.4)
+  des = Faker::Lorem.word
+
+  Bench.create(description: des, lat: lat, lng: lng)
+end
