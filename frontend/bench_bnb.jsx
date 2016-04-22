@@ -1,7 +1,7 @@
 var React = require('react'),
     ReactDOM = require('react-dom'),
-    Index = require('./components/benches/index');
+    Search = require('./components/benches/search');
 
 $(function() {
-  ReactDOM.render(<Index/>, document.getElementById('content'));
+  ReactDOM.render(<Search/>, document.getElementById('content'));
 });
