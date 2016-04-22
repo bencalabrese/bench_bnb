@@ -15,12 +15,22 @@ BenchStore.__onDispatch = function(payload) {
 };
 
 BenchStore.all = function() {
-  return Object.assign({}, _benches);
+  var result = [];
+
+  Object.keys(_benches).forEach(function(id) {
+    result.push(_benches[id]);
+  });
+
+  return result;
 };
 
 // private
 function resetBenches(newBenches) {
-  _benches = newBenches;
+  _benches = {};
+
+  newBenches.forEach(function(bench) {
+    _benches[bench.id] = bench;
+  });
 }
 
 module.exports = BenchStore;

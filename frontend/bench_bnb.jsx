@@ -1,7 +1,7 @@
-var BenchStore = require('./stores/bench'),
-    ClientActions = require('./actions/client_actions');
+var React = require('react'),
+    ReactDOM = require('react-dom'),
+    Index = require('./components/benches/index');
 
-window.BenchStore = BenchStore;
-window.ClientActions = ClientActions;
-
-console.log("Hello World");
+$(function() {
+  ReactDOM.render(<Index/>, document.getElementById('content'));
+});
