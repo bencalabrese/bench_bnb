@@ -8,7 +8,7 @@
 
 50.times do
   lat = Random.new().rand(37.7..37.8)
-  lng = Random.new().rand(122.3..122.4)
+  lng = Random.new().rand(122.4..122.5) * -1
   des = Faker::Lorem.word
 
   Bench.create(description: des, lat: lat, lng: lng)
