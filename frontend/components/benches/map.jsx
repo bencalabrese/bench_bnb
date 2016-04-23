@@ -3,6 +3,8 @@ var React = require('react'),
     ClientActions = require('../../actions/client_actions');
 
 var Map = React.createClass({
+  markers: [],
+
   componentDidMount: function() {
     this.listener = BenchStore.addListener(this._onChange);
 
@@ -40,13 +42,30 @@ var Map = React.createClass({
   },
 
   _onChange: function() {
+    console.log(this.markers.length);
+    this.clearMarkers();
+
     BenchStore.all().forEach(function(bench) {
-      new window.google.maps.Marker({
-        position: { lat: bench.lat, lng: bench.lng },
-        map: this.map,
-        title: bench.description
-      });
+      this.addBenchMarker(bench);
     }.bind(this));
+  },
+
+  addBenchMarker: function(bench) {
+    var marker = new window.google.maps.Marker({
+      position: { lat: bench.lat, lng: bench.lng },
+      map: this.map,
+      title: bench.description
+    });
+
+    this.markers.push(marker);
+  },
+
+  clearMarkers: function() {
+    this.markers.forEach(function(marker){
+      marker.setMap(null);
+    });
+
+    this.markers = [];
   },
 
   render: function() {
