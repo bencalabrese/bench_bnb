@@ -12,6 +12,16 @@ UserStore.__onDispatch = function(payload) {
       _currentUser = payload.currentUser;
       this.__emitChange();
       break;
+
+    case UserConstants.RECEIVE_AUTH_ERRORS:
+      _authErrors = payload.authErrors;
+      this.__emitChange();
+      break;
+
+    case UserConstants.DESTROY_CURRENT_USER:
+      _currentUser = null;
+      this.__emitChange();
+      break;
   }
 };
 
@@ -22,7 +32,5 @@ UserStore.currentUser = function() {
 UserStore.authErrors = function() {
   return _authErrors.slice();
 };
-
-// private
 
 module.exports = UserStore;

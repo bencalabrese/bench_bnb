@@ -39,3 +39,5 @@ $(function() {
 
 var UserActions = require('./actions/user_actions');
 window.UserActions = UserActions;
+var UserStore = require('./stores/user');
+window.UserStore = UserStore;

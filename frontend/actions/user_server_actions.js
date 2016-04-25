@@ -2,48 +2,25 @@ var UserConstants = require('../constants/user_constants'),
     dispatcher = require('../dispatcher/dispatcher');
 
 var ServerActions = {
-  receiveAll: function(currentUser) {
+  receiveCurrentUser: function(currentUser) {
     dispatcher.dispatch({
       actionType: UserConstants.RECEIVE_CURRENT_USER,
       currentUser: currentUser
     });
   },
 
-  displayErrors: function(errors) {
+  recieveErrors: function(authErrors) {
     dispatcher.dispatch({
-      actionType: UserConstants.DISPLAY_AUTH_ERRORS,
-      errors: errors
+      actionType: UserConstants.RECEIVE_AUTH_ERRORS,
+      authErrors: authErrors
     });
   },
 
-  // receiveAll: function(currentUser) {
-  //   dispatcher.dispatch({
-  //     actionType: UserConstants.RECEIVE_CURRENT_USER,
-  //     currentUser: currentUser
-  //   });
-  // },
-  //
-  // receiveAll: function(currentUser) {
-  //   dispatcher.dispatch({
-  //     actionType: UserConstants.RECEIVE_CURRENT_USER,
-  //     currentUser: currentUser
-  //   });
-  // },
-  //
-  // receiveAll: function(currentUser) {
-  //   dispatcher.dispatch({
-  //     actionType: UserConstants.RECEIVE_CURRENT_USER,
-  //     currentUser: currentUser
-  //   });
-  // },
-  //
-  // receiveAll: function(currentUser) {
-  //   dispatcher.dispatch({
-  //     actionType: UserConstants.RECEIVE_CURRENT_USER,
-  //     currentUser: currentUser
-  //   });
-  // },
-
+  destroyCurrentUser: function() {
+    dispatcher.dispatch({
+      actionType: UserConstants.DESTROY_CURRENT_USER
+    });
+  }
 };
 
 module.exports = ServerActions;

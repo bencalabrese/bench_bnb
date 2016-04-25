@@ -7,13 +7,11 @@ var UserApiUtil = {
       method: 'GET',
       dataType: 'json',
       url: 'api/user',
-      success: function(user) {
-        // UserServerActions.receiveCurrentUser(user);
-        console.log("success");
-        console.log(user.username);
+      success: function(currentUser) {
+        UserServerActions.receiveCurrentUser(currentUser);
       },
-      error: function(errors) {
-        console.log(errors);
+      error: function(response) {
+        UserServerActions.recieveErrors(response.responseJSON.errors);
       }
     });
   },
@@ -25,13 +23,10 @@ var UserApiUtil = {
       url: 'api/session',
       data: credentials,
       success: function(currentUser) {
-        console.log(currentUser);
-        console.log("success");
-        console.log(currentUser.username);
-        // UserServerActions.receiveCurrentUser(user);
+        UserServerActions.receiveCurrentUser(currentUser);
       },
-      error: function(errors) {
-        console.log(errors);
+      error: function(response) {
+        UserServerActions.recieveErrors(response.responseJSON.errors);
       }
     });
   },
@@ -42,10 +37,10 @@ var UserApiUtil = {
       dataType: 'json',
       url: 'api/session',
       success: function() {
-        console.log("logged out");
+        UserServerActions.destroyCurrentUser();
       },
-      error: function(errors) {
-        console.log(errors);
+      error: function(response) {
+        UserServerActions.recieveErrors(response.responseJSON.errors);
       }
     });
   },
@@ -57,10 +52,10 @@ var UserApiUtil = {
       url: 'api/user',
       data: credentials,
       success: function(currentUser) {
-        console.log(currentUser);
+        UserServerActions.receiveCurrentUser(currentUser);
       },
-      error: function(errors) {
-        console.log(errors);
+      error: function(response) {
+        UserServerActions.recieveErrors(response.responseJSON.errors);
       }
     });
   },
@@ -71,10 +66,10 @@ var UserApiUtil = {
       dataType: 'json',
       url: 'api/user',
       success: function() {
-        console.log("successfully deleted account");
+        UserServerActions.destroyCurrentUser();
       },
-      error: function(errors) {
-        console.log(errors);
+      error: function(response) {
+        UserServerActions.recieveErrors(response.responseJSON.errors);
       }
     });
   }

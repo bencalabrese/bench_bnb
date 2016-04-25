@@ -13,7 +13,8 @@ class Api::UsersController < ApplicationController
       login!(@user)
       render :show
     else
-      render json: @user.errors.full_messages, status => 403
+      @errors = @user.errors.full_messages
+      render "api/errors", status => 403
     end
   end
 
