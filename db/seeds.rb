@@ -10,6 +10,7 @@
   lat = Random.new().rand(37.7..37.8)
   lng = Random.new().rand(122.4..122.5) * -1
   des = Faker::Lorem.word
+  seating = rand(1..6)
 
-  Bench.create(description: des, lat: lat, lng: lng)
+  Bench.create(description: des, lat: lat, lng: lng, seating: seating)
 end
