@@ -13,12 +13,12 @@ var BenchForm = React.createClass({
     return {
       description: "",
       seating: "",
-      lat: "",
-      lng: "",
+      lat: this.props.location.query.lat,
+      lng: this.props.location.query.lng
     };
   },
 
-  handleClick: function(event) {
+  _handleClick: function(event) {
     event.preventDefault();
 
     ClientActions.createBench({bench: this.state});
@@ -43,16 +43,18 @@ var BenchForm = React.createClass({
         <label>Latitude
           <input type="text"
                  valueLink={this.linkState("lat")}
-                 name="bench[lat]"/>
+                 name="bench[lat]"
+                 disabled/>
         </label>
 
         <label>Longitude
           <input type="text"
                  valueLink={this.linkState("lng")}
-                 name="bench[lng]"/>
+                 name="bench[lng]"
+                 disabled/>
         </label>
 
-        <input type="submit" onClick={this.handleClick}/>
+        <input type="submit" onClick={this._handleClick}/>
       </form>
     );
   }

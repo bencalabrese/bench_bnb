@@ -1,6 +1,7 @@
 var React = require('react'),
     BenchStore = require('../../stores/bench'),
-    ClientActions = require('../../actions/client_actions');
+    ClientActions = require('../../actions/client_actions'),
+    hashHistory = require('react-router').hashHistory;
 
 var Map = React.createClass({
   markers: [],
@@ -16,6 +17,15 @@ var Map = React.createClass({
 
     this.map = new window.google.maps.Map(mapDOMNode, mapOptions);
     this.map.addListener('idle', this.fetchBoundedBenches);
+
+    var self = this;
+
+    this.map.addListener('click', function(event) {
+      var lat = event.latLng.lat(),
+          lng = event.latLng.lng();
+
+      this._handleClick({lat: lat, lng: lng});
+    }.bind(self));
   },
 
   fetchBoundedBenches: function(event) {
@@ -42,7 +52,6 @@ var Map = React.createClass({
   },
 
   _onChange: function() {
-    console.log(this.markers.length);
     this.clearMarkers();
 
     BenchStore.all().forEach(function(bench) {
@@ -66,6 +75,13 @@ var Map = React.createClass({
     });
 
     this.markers = [];
+  },
+
+  _handleClick: function(coords) {
+    hashHistory.push({
+      pathname: "benches/new",
+      query: coords
+    });
   },
 
   render: function() {

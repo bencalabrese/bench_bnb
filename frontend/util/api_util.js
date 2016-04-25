@@ -1,4 +1,5 @@
-var ServerActions = require('../actions/server_actions');
+var ServerActions = require('../actions/server_actions'),
+    hashHistory = require('react-router').hashHistory;
 
 var ApiUtil = {
   fetchBenches: function(apiReadyBounds) {
@@ -19,8 +20,7 @@ var ApiUtil = {
       url: 'api/benches',
       data: benchParams,
       success: function(bench) {
-        console.log("Created the below bench");
-        console.log(bench);
+        hashHistory.push({ pathname: "/" });
       },
     });
   }
