@@ -22,4 +22,11 @@ class ApplicationController < ActionController::Base
   def logged_in?
     !!current_user
   end
+
+  def require_logged_in
+    unless logged_in?
+      error_message = "You must be logged in to complete that action"
+      render json: [error_message], status: 403
+    end
+  end
 end

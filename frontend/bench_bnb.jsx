@@ -31,6 +31,11 @@ var appRouter = (
 );
 
 
+
 $(function() {
   ReactDOM.render(appRouter, document.getElementById('content'));
 });
+
+
+var UserActions = require('./actions/user_actions');
+window.UserActions = UserActions;

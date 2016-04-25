@@ -1,12 +1,14 @@
 class Api::SessionsController < ApplicationController
+  before_action :require_logged_in, only: :destroy
+
   def create
-    @user = User.find_by_credentials(user_params)
+    @user = User.find_by_credentials(session_params)
 
     if @user
       login!(@user)
       render :show
     else
-      render json: ["Invalid Credentials"]
+      render json: ["Invalid Credentials"], status: 403
     end
   end
 
@@ -14,5 +16,10 @@ class Api::SessionsController < ApplicationController
     @user = current_user
     logout!
     render :show
+  end
+
+  private
+  def session_params
+    params.require(:user).permit(:username, :password)
   end
 end
