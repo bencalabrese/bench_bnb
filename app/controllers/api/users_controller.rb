@@ -14,7 +14,7 @@ class Api::UsersController < ApplicationController
       render :show
     else
       @errors = @user.errors.full_messages
-      render "api/errors", status => 403
+      render "api/errors", status: 403
     end
   end
 

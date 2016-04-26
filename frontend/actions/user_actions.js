@@ -17,8 +17,8 @@ var UserActions = {
     UserApiUtil.create(credentials);
   },
 
-  destroy: function(user) {
-    UserApiUtil.destroy(user);
+  destroy: function() {
+    UserApiUtil.destroy();
   }
 };
 

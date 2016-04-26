@@ -10,6 +10,7 @@ UserStore.__onDispatch = function(payload) {
   switch (payload.actionType) {
     case UserConstants.RECEIVE_CURRENT_USER:
       _currentUser = payload.currentUser;
+      _authErrors = [];
       this.__emitChange();
       break;
 
@@ -20,6 +21,7 @@ UserStore.__onDispatch = function(payload) {
 
     case UserConstants.DESTROY_CURRENT_USER:
       _currentUser = null;
+      _authErrors = [];
       this.__emitChange();
       break;
   }

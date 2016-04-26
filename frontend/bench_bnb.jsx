@@ -7,14 +7,18 @@ var ReactRouter = require('react-router'),
     IndexRoute = ReactRouter.IndexRoute,
     hashHistory = ReactRouter.hashHistory;
 
-var Search = require('./components/benches/search'),
+var LoginForm = require('./components/user/login_form'),
+    Search = require('./components/benches/search'),
     BenchForm = require('./components/benches/bench_form');
 
 var App = React.createClass({
   render: function() {
     return (
       <div>
-        <header><h1>Bench BnB</h1></header>
+        <header>
+          <h1>Bench BnB</h1>
+          <LoginForm/>
+          </header>
         {this.props.children}
       </div>
     );
@@ -30,14 +34,6 @@ var appRouter = (
   </Router>
 );
 
-
-
 $(function() {
   ReactDOM.render(appRouter, document.getElementById('content'));
 });
-
-
-var UserActions = require('./actions/user_actions');
-window.UserActions = UserActions;
-var UserStore = require('./stores/user');
-window.UserStore = UserStore;
